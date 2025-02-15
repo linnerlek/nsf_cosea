@@ -77,13 +77,12 @@ where "SCHOOL_NAME" ILIKE ANY (ARRAY[
 DELETE FROM "2024".filtered_schools
 WHERE "UNIQUESCHOOLID" IN (SELECT "UNIQUESCHOOLID" FROM "2024".alternative_schools);
 
--- Join address and coordinate data from ga_school_contact_list
+-- Join coordinate data from ga_school_contact_list
 CREATE TABLE "2024".tbl_approvedschools AS
 SELECT fs.*, 
-       gsc."School Address", 
-       gsc."School City",
+       gsc."School Address",
+       gsc."School City", 
        gsc."State",
-       gsc."School ZIPCODE",
        gsc."lat",
        gsc."lon"
 FROM "2024".filtered_schools fs
