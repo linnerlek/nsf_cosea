@@ -90,6 +90,6 @@ LEFT JOIN "2024".ga_school_contact_list gsc
 ON fs."UNIQUESCHOOLID" = gsc."UNIQUESCHOOLID";
 
 -- Create a geometry column for school locations
-ALTER TABLE "2024".tbl_approvedschools ADD COLUMN schoolgeom geometry(Point, 4269);
+ALTER TABLE "2024".tbl_approvedschools ADD COLUMN schoolgeom geometry(Point, 102005);
 UPDATE "2024".tbl_approvedschools 
-SET schoolgeom = ST_SetSRID(ST_MakePoint(lon, lat), 4269);
+SET schoolgeom = ST_Transform(ST_SetSRID(ST_MakePoint(lon, lat), 4269), 102005);
