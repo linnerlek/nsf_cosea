@@ -1,8 +1,9 @@
 # nsf_cosea workflow
 ## SQL Scripts
+SQL scripts are in `sql/`
 
 #### Files needed in database: 
-(can be found in `data.zip` if needed)
+(can be found in `old/data.zip` if needed)
 - `fte2024-1_enroll-demog_sch.csv`
 - `ga_school_contact_list.csv`
 - `ncesdata2024.csv`
