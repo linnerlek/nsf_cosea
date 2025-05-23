@@ -1,16 +1,40 @@
 # nsf_cosea workflow
-## SQL Scripts
-SQL scripts are in `sql/`
 
-#### Files needed in database: 
-(can be found in `old/data.zip` if needed)
+This repository contains SQL scripts and a Jupyter notebook used to process and analyze Georgia High School data
+
+### Repository Structure
+
+- `cosea_workbook.ipynb`: Main notebook with the analysis and data processing workflow
+- `sql/`: Contains 4 SQL scripts that generate final outputs: `tbl_approvedschools` and `tbl_cbg_finalassignment`
+- `old/`: Contains deprecated and unused materials (includes `data.zip` with needed CSVs)
+- `docs/`: Documentation
+
+---
+
+### Workbook Summary
+**output tables:** `census.gadoe2024` and `census.course_logic_2024`
+
+The Jupyter notebook performs the following tasks:
+
+- Defines approved CS courses
+- Standardizes IDs, cleans certification data, and formats course titles
+- Summarizes enrollment and demographics by school
+- Combines approved schools, enrollment, and course data into one dataset
+- Computes under-/over-representation of racial/gender groups in CS courses
+- Logic Flags:
+  - `LOGIC_CLASS`: Binary flags for in-person, virtual, and extra CS teachers
+  - `LOGIC_CLASS_2`: Same logic using expanded list of CS-related courses
+
+---
+
+### SQL Scripts
+**output tables:** `tbl_approvedschools` and `tbl_cbg_finalassignment`
+
+**Files needed in database:**
 - `fte2024-1_enroll-demog_sch.csv`
 - `ga_school_contact_list.csv`
 - `ncesdata2024.csv`
-- `tl_2023_13_bg.zip`
-
-
----
+- `tl_2024_13_bg.zip` (named `2024.tbl_cbg` in our database)
 
 #### 1. `filtering_schools.sql`
 1. Creates `UNIQUESCHOOLID` in `ga_school_contact_list` and `fte2024-1_enroll-demog_sch`
@@ -20,8 +44,6 @@ SQL scripts are in `sql/`
 5. Joins `School Address`, `School City`, `State`, `lat` and `lon` from `ga_school_contact_list` to the new table `tbl_approvedschools`
 6. Creates a `schoolgeom` column  that contains the point geom derived from the coordinates in `tbl_approvedschools`
 
----
-
 #### 2. `district_info.sql`
 1. Extracts numeric portion of `State District ID` and store it as `district_id_clean` in `ncesdata2024`.
 2. Joins the `Locale Code` from `ncesdata2024` to `tbl_approvedschools` using `SYSTEM_ID = district_id_clean`.
@@ -30,9 +52,7 @@ SQL scripts are in `sql/`
    - **Suburb** (`Locale Code` 21-29)  
    - **Town** (`Locale Code` 31-39)  
    - **Rural** (`Locale Code` 41-49)  
-4. Stores the locale type in the `Locale` column of `tbl_approvedschools`.  
-
----
+4. Stores the locale type in the `Locale` column of `tbl_approvedschools`.
 
 #### 3. `define_buffers.sql`
 1. Creates `tbl_bufferlookup` to store buffer distances for different locale types.
@@ -43,8 +63,6 @@ SQL scripts are in `sql/`
    - **Rural** → 18 miles  
 3. Adds a `buffer_distance` column to `tbl_approvedschools`
 4. Joins `buffer_distance` from `tbl_bufferlookup` to `tbl_approvedschools`
-
----
 
 #### 4. `attendance_zones.sql`
 1. Creates `cbgcentroidgeom` column in `tbl_cbg` and populates it with centroids
