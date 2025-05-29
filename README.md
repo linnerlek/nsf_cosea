@@ -4,10 +4,12 @@ This repository contains SQL scripts and a Jupyter notebook used to process and 
 
 ### Repository Structure
 
+- **`output/` Contains all maps and figures**
 - `cosea_workbook.ipynb`: Main notebook with the analysis and data processing workflow
+- `maps.py`: Script to generate all maps found in `output/` from the database
+- `violinplots.py` Generates violinplots found in `output/`
 - `sql/`: Contains 4 SQL scripts that generate final outputs: `tbl_approvedschools` and `tbl_cbg_finalassignment`
-- `old/`: Contains deprecated and unused materials (includes `data.zip` with needed CSVs)
-- `docs/`: Documentation
+- `etc/`: Includes `data.zip` with needed CSVs, `docs/` with documentation, and `old/` with unused code
 
 ---
 

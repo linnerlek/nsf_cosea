@@ -260,7 +260,7 @@ for var_name, meta in variables.items():
                            edgecolor='gray', linewidth=0.5))
     plt.tight_layout()
     plt.subplots_adjust(left=0.15)
-    plt.savefig(f'violin_race_{var_name.lower().replace(" ", "_")}.png')
+    plt.savefig(f'output/violin_race_{var_name.lower().replace(" ", "_")}.png')
     plt.close()
 
     # Locale‐wise violin
@@ -328,7 +328,7 @@ for var_name, meta in variables.items():
                              edgecolor='gray', linewidth=0.5))
     plt.tight_layout()
     plt.subplots_adjust(left=0.15)
-    plt.savefig(f'violin_locale_{var_name.lower().replace(" ", "_")}.png')
+    plt.savefig(f'output/violin_locale_{var_name.lower().replace(" ", "_")}.png')
     plt.close()
 
 print("All plots have been generated successfully.")

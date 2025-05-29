@@ -150,5 +150,5 @@ interstates.drop(columns='max_y', inplace=True)
 # save figure
 plt.tight_layout()
 plt.subplots_adjust(bottom=0.25)
-fig.savefig("map8_county.png", dpi=300, bbox_inches='tight', bbox_extra_artists=[leg1, leg2, leg3])
-plt.show()
+fig.savefig("output/map8_county.png", dpi=300, bbox_inches='tight', bbox_extra_artists=[leg1, leg2, leg3])
+#plt.show()

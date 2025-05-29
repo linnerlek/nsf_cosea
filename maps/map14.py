@@ -162,5 +162,5 @@ for _, row in city_gdf.iterrows():
 # save figure
 plt.tight_layout()
 plt.subplots_adjust(bottom=0.18)
-fig.savefig("map14_county.png", dpi=300, bbox_inches='tight', bbox_extra_artists=[leg1, leg2])
-plt.show()
+fig.savefig("output/map14_county.png", dpi=300, bbox_inches='tight', bbox_extra_artists=[leg1, leg2])
+#plt.show()

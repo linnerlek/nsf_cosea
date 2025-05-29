@@ -196,5 +196,5 @@ plt.tight_layout()
 plt.subplots_adjust(bottom=0.12)
 
 # save figure
-fig.savefig("map4_county.png", dpi=300, bbox_inches='tight', bbox_extra_artists=[leg1, leg2, leg3])
-plt.show()
+fig.savefig("output/map4_county.png", dpi=300, bbox_inches='tight', bbox_extra_artists=[leg1, leg2, leg3])
+#plt.show()
